@@ -32,6 +32,5 @@ public:
     bCtrl( char SSID[] , char PSWD[] ) ;
     ~bCtrl() ;
 
-
 };
 

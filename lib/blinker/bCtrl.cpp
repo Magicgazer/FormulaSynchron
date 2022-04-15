@@ -1,7 +1,7 @@
 /**
  * @file bCtrl.cpp
  * @author Dlerk
- * @brief bCrtl的实现
+ * @brief bCrtl的实现文档
  * @version 0.1
  * @date 2022-04-15
  * 
