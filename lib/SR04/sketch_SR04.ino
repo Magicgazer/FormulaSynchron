@@ -14,9 +14,8 @@ void loop()
     //打印距离至控制台
     Serial.print( "Distance is : " ) ;
     Serial.print( distance ) ;
-    Serial.print( " cm" ) ;
-    Serial.println() ;
+    Serial.print( " cm\n" ) ;
 
-    delete uls ;
+   // delete uls ;
 }
 

@@ -12,7 +12,7 @@
 #include "Arduino.h"
 #include "SR04.h"
 
-void SR04::SR04 ( int tP , int eP ) 
+SR04::SR04 ( int tP , int eP ) 
 {
     pinMode(trigPin, OUTPUT) ;
     pinMode(echoPin, INPUT) ;
@@ -27,7 +27,7 @@ float SR04::getDistance ()
     digitalWrite( trigPin, HIGH ) ;
     delayMicroseconds(10) ;
     digitalWrite( trigPin, LOW ) ;
-    float distance = pulseln( echoPin, HIGH ) / 58.0 ;
+    float distance = pulseIn( echoPin, HIGH ) / 58.0 ;
     return distance ;
 }
 
