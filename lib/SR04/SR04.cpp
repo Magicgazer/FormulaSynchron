@@ -32,7 +32,7 @@ float SR04::getDistance() {
     digitalWrite(trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(trigPin, LOW);
-    float distance = pulseln(echoPin, HIGH) / 58.0;
+    float distance = pulseIn(echoPin, HIGH) / 58.0;
     return distance;
 }
 

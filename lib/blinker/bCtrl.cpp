@@ -26,5 +26,5 @@ bCtrl::bCtrl( char Ssid[] , char Pswd[] )
 
 bCtrl::~bCtrl()
 {
-    Serial.printIn( "bCtrl is deleted" ) ;
+    Serial.println( "bCtrl is deleted" ) ;
 }
