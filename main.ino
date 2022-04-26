@@ -1,5 +1,14 @@
 /**
  * @file main.ino
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-04-26
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+ * @file main.ino
  * @author Dlerk
  * @brief 
  * @version 1.0
@@ -11,8 +20,13 @@
 
 #define BLINKER_WIFI
 #include <SR04.h>
+#include <string>
+using std::string ;
 
 #define buzzerPin = 1 ;
+
+string str = "AAADDDDFFFG"  ;
+
 const int ledPin = 13 ;
 
 const char* SSID = "" ;
