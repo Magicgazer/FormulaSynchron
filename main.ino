@@ -20,11 +20,6 @@
 const char* SSID = "";
 const char* PSWD = "";
 
-// 初始化电动机对象
-AF_DCMotor Lfront(1);
-AF_DCMotor Rfront(2);
-AF_DCMotor Lrear(3);
-AF_DCMotor Rrear(4);
 
 void setup() {
     // put your setup code here, to run once:
