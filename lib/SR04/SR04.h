@@ -21,10 +21,10 @@ private:
     int echoPin ;
 
 public:
-    SR04( int trigPin , int echoPin ) ;  //初始化SR04
-    ~SR04();    //析构函数，删除SR04类并释放内存
+    SR04( int trigPin , int echoPin ) ;  
+    ~SR04();   
 
-    float getDistance () ;   //将传感器返回值计算成实际距离（cm）
+    float getDistance () ;  
     
 };
 
