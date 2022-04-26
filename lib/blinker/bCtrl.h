@@ -10,8 +10,9 @@
  */
 
 #include <Blinker.h>
-#include <String.h>
+#include <string.h>
 #define BLINKER_WIFI
+
 
 class bCtrl
 {
