@@ -7,10 +7,11 @@
  * @date 2022-04-28
  * 
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #define BLINKER_WIFI
+#include <Blinker.h>
 #include <SR04.h>
 #include <blinkerCtrl.h>
 #include <L293D.h>
