@@ -10,6 +10,9 @@
  * 
  */
 
+#ifndef _BINKERCTRL_H_
+#define _BINKERCTRL_H_
+
 #include <Blinker.h>
 #include <L293D.h>
 #define BLINKER_WIFI
@@ -35,7 +38,7 @@ int speed_callback(int32_t value) ;
  * 
  * @param distance 测距传感器读到的距离
  */
-void autoBrake ( double distance ， const int globalspeed  ) ;
+void autoBrake ( double distance , const int globalspeed  ) ;
 
 /**
  * @brief 小车控制函数以及报错函数
@@ -52,17 +55,17 @@ void dataRead(const String & data) ;    // 未绑定的组件被触发时报错
 
 /* ----- 下面为函数的具体实现 ----- */
 
-void bCtrl::dataRead(const String & data)
+void dataRead(const String & data)
 {
     BLINKER_LOG( "Blinker readString: " , data ) ;
 }
 
-int bCtrl::speed_callback(int32_t value)
+int speed_callback(int32_t value)
 {
     return (100+value*30) ;
 }
 
-void bCtrl::car1_callback(const String & state)
+void car1_callback(const String & state)
 {
     if( state == "press" )
     {
@@ -74,7 +77,7 @@ void bCtrl::car1_callback(const String & state)
     }
 }
 
-void bCtrl::car2_callback(const String & state)
+void car2_callback(const String & state)
 {
     if( state == "press" )
     {
@@ -86,7 +89,7 @@ void bCtrl::car2_callback(const String & state)
     }
 }
 
-void bCtrl::car3_callback(const String & state)
+void car3_callback(const String & state)
 {
     if( state == "press" )
     {
@@ -98,7 +101,7 @@ void bCtrl::car3_callback(const String & state)
     }
 }
 
-void bCtrl::car4_callback(const String & state)
+void car4_callback(const String & state)
 {
     if( state == "press" )
     {
@@ -115,13 +118,13 @@ void autoBrake ( double distance , const int globalspeed ) ;
 
     if ( distance < 30 )
     {
-        downSpeed( 100 ) ;   // 距离 < 30cm 时自动减速到100
+        setSpeed( 100 ) ;   // 距离 < 30cm 时自动减速到100
     }
     else
     {
-        upSpeed( globalspeed ) ;   // 正常距离范围时，恢复到全局速度
+        setSpeed( globalspeed ) ;   // 正常距离范围时，恢复到全局速度
     }
     
 }
 
-
+# endif

@@ -61,6 +61,10 @@ void setup()
     car3.attach(car3_callback);   //左转组件
     car4.attach(car4_callback);   //右转组件
 
+    /* ----- 初始化L293D ----- */
+
+    void L293D( _Lfront , _Rfront , _Lrear , _Rrear );
+    
     Serial.print( "The car setups correctly\n" ) ;
 
 }
@@ -77,6 +81,8 @@ void loop()
     Serial.print( '\n' ) ;
 
     //Serial.println( "*****DEBUG*****" ) ;
+
+    car_speed = speed_callback() ;
 
     autoBrake( _distance , car_speed ) ;    // 判断是否需要制动
     Blinker.run() ;  // Blinker模块运行
