@@ -12,124 +12,112 @@
 
 #include <AFMotor.h>
 
-L293D::L293D() {
-    direction = true;
-    tolSpeed_ = 0;
-    setDirection();
-    set_tolSpeed();
-    correctSpeed();
+
+void L293D(const short Lfront,
+           const short Rfront,
+           const short Lrear,
+           const short Rrear) {
+    motor::Lfront_ = AF_DCMotor(Lfront);
+    motor::Rfront_ = AF_DCMotor(Rfront);
+    motor::Lfront_ = AF_DCMotor(Rfront);
+    motor::Rrear_ = AF_DCMotor(Lrear);
+    motor::direction = true;
+    motor::tolSpeed_ = 0;
+    motor::setDirection();
+    motor::setTolSpeed();
+    motor::correctSpeed();
 }
 
-L293D::L293D(const short Lfront,
-             const short Rfront,
-             const short Lrear,
-             const short Rrear) {
-    Lfront_ = AF_DCMotor(Lfront);
-    Rfront_ = AF_DCMotor(Rfront);
-    Lfront_ = AF_DCMotor(Rfront);
-    Rrear_ = AF_DCMotor(Lrear);
-    direction = true;
-    tolSpeed_ = 0;
-    setDirection();
-    set_tolSpeed();
-    correctSpeed();
-}
-
-void L293D::upSpeed(const short variable) {
-    for (short i = 1; i <= variable && tolSpeed_ <= 255; i++) {
-        tolSpeed_++;
-        set_tolSpeed();
+void upSpeed(const short variable) {
+    for (short i = 1; i <= variable && motor::tolSpeed_ <= 255; i++) {
+        motor::tolSpeed_++;
+        motor::setTolSpeed();
     }
-    correctSpeed();
+    motor::correctSpeed();
 }
 
-void L293D::downSpeed(const short variable) {
-    for (short i = 1; i <= variable && tolSpeed_ >= 0; i++) {
-        tolSpeed_--;
-        set_tolSpeed();
+void downSpeed(const short variable) {
+    for (short i = 1; i <= variable && motor::tolSpeed_ >= 0; i++) {
+        motor::tolSpeed_--;
+        motor::setTolSpeed();
     }
-    correctSpeed();
+    motor::correctSpeed();
 }
 
-void L293D::setSpeed(const short speed) {
+void setSpeed(const short speed) {
     if (speed < 0)
         return;
-    if (tolSpeed_ > speed) {
-        while (tolSpeed_ > speed && tolSpeed_) {
-            tolSpeed_--;
-            set_tolSpeed();
+    if (motor::tolSpeed_ > speed) {
+        while (motor::tolSpeed_ > speed && motor::tolSpeed_) {
+            motor::tolSpeed_--;
+            motor::setTolSpeed();
         }
     } else {
-        while (tolSpeed_ < speed) {
-            tolSpeed_++;
-            set_tolSpeed();
+        while (motor::tolSpeed_ < speed) {
+            motor::tolSpeed_++;
+            motor::setTolSpeed();
         }
     }
-    correctSpeed();
+    motor::correctSpeed();
 }
 
-void L293D::stop() {
-    tolSpeed_ = 0;
-    set_tolSpeed();
-    correctSpeed();
+void carStop() {
+    motor::tolSpeed_ = 0;
+    motor::setTolSpeed();
+    motor::correctSpeed();
 }
 
-void L293D::brake() {
+void brake() {
     return;
 }
 
-void L293D::straight() {
-    setDirection();
-    if (leftSpeed_ < tolSpeed_) {
-        while (leftSpeed_ < tolSpeed_) {
-            leftSpeed_++;
-            set_leftSpeed();
+void straight() {
+    motor::direction = true;
+    motor::setDirection();
+    if (motor::leftSpeed_ < motor::tolSpeed_) {
+        while (motor::leftSpeed_ < motor::tolSpeed_) {
+            motor::leftSpeed_++;
+            motor::setLeftSpeed();
         }
-    } else if (rightSpeed_ < tolSpeed_) {
-        while (rightSpeed_ < tolSpeed_) {
-            rightSpeed_++;
-            set_rightSpeed;
+    } else if (motor::rightSpeed_ < motor::tolSpeed_) {
+        while (motor::rightSpeed_ < motor::tolSpeed_) {
+            motor::rightSpeed_++;
+            motor::setRightSpeed;
         }
     }
-    correctSpeed();
+    motor::correctSpeed();
 }
 
-void L293D::turnLeft() {
+void turnLeft() {
     straight();
-    leftSpeed_ = tolSpeed_ / 2;
-    set_leftSpeed();
+    motor::leftSpeed_ = motor::tolSpeed_ / 2;
+    motor::setLeftSpeed();
 }
 
-void L293D::turnRight() {
+void turnRight() {
     straight();
-    rightSpeed_ = tolSpeed_ / 2;
-    set_leftSpeed();
+    motor::rightSpeed_ = motor::tolSpeed_ / 2;
+    motor::setLeftSpeed();
 }
 
-void L293D::turnRound() {
-    const short temp = tolSpeed_;
+void turnRound() {
+    const short temp = motor::tolSpeed_;
     setSpeed(0);
-    if (direction) {
-        Lfront_.run(BACKWARD);
-        Rfront_.run(FORWARD);
-        Lrear_.run(BACKWARD);
-        Rrear_.run(FORWARD);
+    if (motor::direction) {
+        motor::Lfront_.run(BACKWARD);
+        motor::Rfront_.run(FORWARD);
+        motor::Lrear_.run(BACKWARD);
+        motor::Rrear_.run(FORWARD);
     } else {
-        Lfront_.run(FORWARD);
-        Rfront_.run(BACKWARD);
-        Lrear_.run(FORWARD);
-        Rrear_.run(BACKWARD);
+        motor::Lfront_.run(FORWARD);
+        motor::Rfront_.run(BACKWARD);
+        motor::Lrear_.run(FORWARD);
+        motor::Rrear_.run(BACKWARD);
     }
     setSpeed(temp);
 }
 
-void L293D::reverse() {
-    if(direction){
-        direction = false;
-        setDirection();
-    }
-    else{
-        direction = true;
-        setDirection();
-    }
+void backup() {
+    motor::direction = false;
+    motor::setDirection();
 }
