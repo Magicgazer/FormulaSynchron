@@ -2,7 +2,7 @@
  * @file blinkerCtrl.h
  * @author Dlerk_
  * @brief blinker方法的库文档
- * @version 0.1
+ * @version 1.0
  * @date 2022-04-28
  * 
  * @copyright Copyright (c) 2022
