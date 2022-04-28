@@ -89,6 +89,9 @@ public:
      * @deprecated 太难写了
      */
     void brake();
+
+    // 恢复直行
+    void straight();
     // 左转
     void turnLeft();
     // 右转
