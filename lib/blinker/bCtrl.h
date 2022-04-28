@@ -10,6 +10,7 @@
  */
 
 #include <Blinker.h>
+
 #define BLINKER_WIFI
 
 class bCtrl
@@ -18,9 +19,7 @@ class bCtrl
         char _auth[10] = "\0" ;   //双引号里把*换成blinker.app上的key
         char _ssid[10] = "\0" ;  //链接Wi-Fi或手机热点名称
         char _pswd[10] = "\0" ;  //Wi-Fi密码
-
-        
-        
+  
     public:
         // 创建Blinker模块对象
         BlinkerNumber dist=BlinkerNumber("dist") ;        //距离
@@ -32,8 +31,6 @@ class bCtrl
 
         //bCtrl() {} ;
 
-
-        
         bCtrl( char auth[] , char ssid[] , char pswd[] ) ;
         ~bCtrl() ;
         int speed_callback(int32_t value) ;
@@ -42,8 +39,5 @@ class bCtrl
         void car3_callback(const String & state) ;
         void car4_callback(const String & state) ;
         void dataRead(const String & data) ;
-
-        
-
 };
 

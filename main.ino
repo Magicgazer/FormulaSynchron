@@ -1,21 +1,26 @@
 /**
  * 
  * @file main.ino
- * @author your name (you@domain.com)
- * @brief 
- * @version 0.1
- * @date 2022-04-26
- * 
+ * @author Dlerk
+ * @brief
+ * @version 1.0
+ * @date 2022-04-15
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #define BLINKER_WIFI
+#include <Blinker.h>
 #include <SR04.h>
 #include <bCtrl.h>
+#include <AFMotor.h>
 
-#define buzzerPin = 1 ;
+#define buzzerPin = 1;
+#define ledPin    = 13;
 
+const char* SSID = "";
+const char* PSWD = "";
 const int ledPin = 13 ;
 
 SR04* uls = new SR04(9,8) ;
@@ -27,7 +32,6 @@ void setup()
     
     Serial.begin(9600) ;    
     pinMode( ledPin, OUTPUT ) ;
-
 }
 
 void loop()
@@ -42,5 +46,4 @@ void loop()
     Serial.print( " cm\n" ) ;
 
     delay(1000) ;
-
 }
