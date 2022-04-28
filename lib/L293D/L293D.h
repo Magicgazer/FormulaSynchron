@@ -62,7 +62,6 @@ namespace motor {
         Rfront_.setSpeed(rightSpeed_);
         Rrear_.setSpeed(rightSpeed_);
     }
-
 }
 
 /**

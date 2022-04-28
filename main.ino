@@ -1,4 +1,5 @@
 /**
+ * 
  * @file main.ino
  * @author Dlerk
  * @brief
@@ -12,6 +13,7 @@
 #define BLINKER_WIFI
 #include <Blinker.h>
 #include <SR04.h>
+#include <bCtrl.h>
 #include <AFMotor.h>
 
 #define buzzerPin = 1;
@@ -19,12 +21,29 @@
 
 const char* SSID = "";
 const char* PSWD = "";
+const int ledPin = 13 ;
 
+SR04* uls = new SR04(9,8) ;
 
-void setup() {
-    // put your setup code here, to run once:
+//bCtrl Ctl = bCtrl( "\0" , "\0" , "\0" ) ;
+
+void setup()
+{
+    
+    Serial.begin(9600) ;    
+    pinMode( ledPin, OUTPUT ) ;
 }
 
-void loop() {
-    // put your main code here, to run repeatedly:
+void loop()
+{
+    
+    //Serial.println( "*****DEBUG*****" ) ;
+
+    float distance = uls->getDistance() ;
+
+    Serial.print( "Distance is : " ) ;
+    Serial.print( distance ) ;
+    Serial.print( " cm\n" ) ;
+
+    delay(1000) ;
 }
