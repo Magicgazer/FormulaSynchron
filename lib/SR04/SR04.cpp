@@ -11,22 +11,16 @@
 
 #include "SR04.h"
 
-#include "Arduino.h"
-
-/**
- * @brief Construct a new SR04::SR04 object
- *
- * @param tP
- * @param eP
- */
-SR04::SR04(int tP, int eP) {
+SR04::SR04(int tP, int eP) 
+{
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
     trigPin = tP;
     echoPin = eP;
 }
 
-float SR04::getDistance() {
+float SR04::getDistance() 
+{
     digitalWrite(trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(trigPin, HIGH);
@@ -36,6 +30,7 @@ float SR04::getDistance() {
     return distance;
 }
 
-SR04::~SR04() {
+SR04::~SR04() 
+{
     Serial.println("SR04 is deleted");
 }
