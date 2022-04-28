@@ -105,15 +105,15 @@ public:
      * @deprecated 太难写了
      */
     void brake();
-    // 恢复直行
+    // 恢复直行状态
     void straight();
-    // 左转
+    // 变为左转状态
     void turnLeft();
-    // 右转
+    // 变为右转状态
     void turnRight();
-    // 原地掉头
+    // 变为原地掉头状态
     void turnRound();
-    // 挂倒挡
+    // 调换方向
     void reverse();
 };
 

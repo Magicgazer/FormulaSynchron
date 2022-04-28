@@ -15,6 +15,8 @@
 L293D::L293D() {
     direction = true;
     tolSpeed_ = 0;
+    setDirection();
+    set_tolSpeed();
     correctSpeed();
 }
 
@@ -28,6 +30,8 @@ L293D::L293D(const short Lfront,
     Rrear_ = AF_DCMotor(Lrear);
     direction = true;
     tolSpeed_ = 0;
+    setDirection();
+    set_tolSpeed();
     correctSpeed();
 }
 
