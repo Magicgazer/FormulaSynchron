@@ -46,8 +46,9 @@ void setup()
     
     /* ----- 初始化串口 ----- */
 
-    Serial.begin(9600) ;    
-    pinMode( ledPin, OUTPUT ) ;
+    Serial.begin(9600);    
+    pinMode( ledPin , OUTPUT );
+    pinMode( buzzerPin , OUTPUT );
     /*
         预留的电机串口空位
     */
@@ -83,11 +84,6 @@ void loop()
 
     //Serial.println( "*****DEBUG*****" ) ;
 
-    car_speed = speed_callback() ;
-
-    autoBrake( _distance , car_speed ) ;    // 判断是否需要制动
-    Blinker.run() ;  // Blinker模块运行
-
     float _distance = uls->getDistance() ;
 
     if( isnan(_distance) ) ;
@@ -99,6 +95,17 @@ void loop()
     {
         dis_read = _distance ;  // 将传感器探测到的距离数据传递给Blinker
     }
+
+    car_speed = speed_callback() ;
+
+    // 距离过进自动报警
+    if( _distance < 30.00 )
+        digitalWrite( buzzerPin , HIGH ) ;
+    else
+        digitalWrite( buzzerPin , LOW ) ;
+
+    autoBrake( _distance , car_speed ) ;    // 判断是否需要制动
+    Blinker.run() ;  // Blinker模块运行
 
     Blinker.delay(1000) ;
 
