@@ -12,6 +12,47 @@
 
 #include <AFMotor.h>
 
+namespace motor{
+    short leftSpeed_ = 0;   // 左侧速度
+    short rightSpeed_ = 0;  // 右侧速度
+    short tolSpeed_ = 0;    // 总速度
+    bool direction = true;     // 方向 true = 正向
+    AF_DCMotor Lfront_(1);
+    AF_DCMotor Rfront_(2);
+    AF_DCMotor Lrear_(3);
+    AF_DCMotor Rrear_(4);
+    void correctSpeed() {
+        leftSpeed_ = tolSpeed_;
+        rightSpeed_ = tolSpeed_;
+    }
+    void setDirection() {
+        if (direction) {
+            Lfront_.run(FORWARD);
+            Rfront_.run(FORWARD);
+            Lrear_.run(FORWARD);
+            Rrear_.run(FORWARD);
+        } else {
+            Lfront_.run(BACKWARD);
+            Rfront_.run(BACKWARD);
+            Lrear_.run(BACKWARD);
+            Rrear_.run(BACKWARD);
+        }
+    }
+    void setTolSpeed() {
+        Lfront_.setSpeed(tolSpeed_);
+        Rfront_.setSpeed(tolSpeed_);
+        Lrear_.setSpeed(tolSpeed_);
+        Rrear_.setSpeed(tolSpeed_);
+    }
+    void setLeftSpeed() {
+        Lfront_.setSpeed(leftSpeed_);
+        Lrear_.setSpeed(leftSpeed_);
+    }
+    void setRightSpeed() {
+        Rfront_.setSpeed(rightSpeed_);
+        Rrear_.setSpeed(rightSpeed_);
+    }
+}
 
 void L293D(const short Lfront,
            const short Rfront,
