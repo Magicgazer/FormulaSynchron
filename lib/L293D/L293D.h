@@ -13,22 +13,29 @@
 #define _L293D_H_
 
 #include <Arduino.h>
-#include <stdio.h>
 
 #include "AFMotor.h"
 
 namespace motor {
-    // 速度修正
-    void correctSpeed();
-    // 设置方向
-    void setDirection();
-    // 设置总速度
-    void setTolSpeed();
-    // 设置左侧速度
-    void setLeftSpeed();
-    // 设置右侧速度
-    void setRightSpeed();
-}
+// 速度修正
+void correctSpeed();
+// 设置方向
+void setDirection();
+// 设置总速度
+void setTolSpeed();
+// 设置左侧速度
+void setLeftSpeed();
+// 设置右侧速度
+void setRightSpeed();
+// 设置方向
+void setDirection();
+// 设置总速度
+void setTolSpeed();
+// 设置左侧速度
+void set_leftSpeed();
+// 设置右侧速度
+void set_rightSpeed();
+}  // namespace motor
 
 /**
  * @brief Construct a new L293D object
@@ -37,13 +44,10 @@ namespace motor {
  * @param Rfront 右前轮电机端口号
  * @param Lrear  左后轮电机端口号
  * @param Rrear  右后轮电机端口号
- * 
+ *
  * @deprecated 已失效
  */
-void L293D(const short Lfront,
-           const short Rfront,
-           const short Lrear,
-           const short Rrear);
+void L293D(const short Lfront, const short Rfront, const short Lrear, const short Rrear);
 /**
  * @brief 提高指定量速度
  *
